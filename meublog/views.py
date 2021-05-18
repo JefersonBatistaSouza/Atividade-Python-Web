@@ -8,11 +8,8 @@ def listar_posts(request):
 
 def detalhar_post(request, ano, mes, dia, slug):
     post = get_object_or_404(Post, slug=slug, status='publicado', publicado__year=ano, publicado__month=mes, publicado__day=dia)
-    return render(request, 'meublog/post/detalharpost.html', {'post': post})
+    comentarios = Comentario.ativosG.filter(ativo=True, fk_post=post.id)
+    return render(request, 'meublog/post/detalharpost.html', {'post': post, 'comentarios': comentarios})
 
-#Comentarios
-def listar_comentarios(request):
-    comentarios = Comentario.ativosG.all()
-    return render(request, 'meublog/comentarios/listarcomentarios.html', {'comentarios': comentarios})
 
 

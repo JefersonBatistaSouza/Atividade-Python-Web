@@ -17,8 +17,8 @@ class PostAdmin(admin.ModelAdmin):
 @admin.register(Comentario)
 class ComentarioAdmin(admin.ModelAdmin):
     list_display = ('nome', 'email', 'ativo')
-    list_filter = ('ativo',)
+    list_filter = ('ativo', 'nome')
     search_fields = ('nome', 'email')
     raw_id_fields = ('fk_post',)
-    prepopulated_fields = {'nome': ('nome',)}
+    #prepopulated_fields = {'nome': ('nome',)}
     date_hierarchy = 'atualizado'

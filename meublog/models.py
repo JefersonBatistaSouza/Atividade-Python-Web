@@ -1,11 +1,12 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 #Posts
 class PublicadosManager(models.Manager):
     def get_queryset(self):
-        return super(PublicadosManager, self).get_queryset().filter(status='publicados')
+        return super(PublicadosManager, self).get_queryset().filter(status='publicado')
 
 class Post(models.Model):
     STATUS_CHOICES=(
@@ -24,6 +25,9 @@ class Post(models.Model):
     criado = models.DateTimeField(auto_now_add=True)# No momento em que criar 
     status = models.CharField(max_length=9, choices=STATUS_CHOICES, default='rascunho')
 
+    def get_absolute_url(self):
+        return reverse('meublog:detalhe', args=[self.publicado.year, self.publicado.month, self.publicado.day, self.slug])
+
     class Meta:
         ordering = ('-publicado',)
         verbose_name = 'Post'
@@ -35,7 +39,7 @@ class Post(models.Model):
 #Comentarios
 class AtivosManager(models.Manager):
     def get_queryset(self):
-        return super(AtivosManager, self).get_queryset().filter(ativo=True)    
+        return super(AtivosManager, self).get_queryset().all()   
 
 class Comentario(models.Model):
     STATUS_CHOICES=(
