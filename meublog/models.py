@@ -24,10 +24,10 @@ class Post(models.Model):
     publicado = models.DateTimeField(default=timezone.now) #Na hora atual
     criado = models.DateTimeField(auto_now_add=True)# No momento em que criar 
     status = models.CharField(max_length=9, choices=STATUS_CHOICES, default='rascunho')
-
+    '''
     def get_absolute_url(self):
         return reverse('meublog:detalhe', args=[self.publicado.year, self.publicado.month, self.publicado.day, self.slug])
-
+    '''
     class Meta:
         ordering = ('-publicado',)
         verbose_name = 'Post'
