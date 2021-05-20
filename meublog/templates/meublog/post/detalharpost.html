@@ -12,6 +12,14 @@
         {{ post.corpo|linebreaks }}
     </p>
 
+    <p>
+        <a href="{% url 'meublog:share_post' post.id %}">Enviar este Post</a>
+    </p>
+
+    <p>
+        <a href="{% url 'meublog:comentar_post' post.id %}">Comentar</a>
+    </p>
+
     <h2>Comentarios:</h2>
     {% if comentarios %}
         {% for c in comentarios %}
