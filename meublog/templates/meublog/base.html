@@ -9,13 +9,25 @@
     <link rel="stylesheet" href="{% static 'css/meublog.css' %}">
 </head> 
 <body>
+<div class="page">
     <div id="content">
+        <div class="header">
+            <div id="logo">
+                <h1>Blog JC</h1>
+                <p>Dev solutions</p>
+            </div>
+            <div id="menu">
+                <a href="/">Posts</a>
+                <a href="/admin">Fazer Login</a>
+            </div>
+        </div>
         {% block conteudo %}
         {% endblock %}
-    </div>    
-    <div id="sidebar">
-        <h2>Meu blog</h2>
-        <p>Este é meu blog</p>
     </div>
+    <div id="sidebar">
+        <h2>Meinha Sidebar</h2>
+        <p>conteudo sidebar</p>
+    </div>
+</div>
 </body>
 </html>

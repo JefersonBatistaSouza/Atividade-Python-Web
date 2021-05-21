@@ -3,7 +3,7 @@
     << Meu Blog >>
 {% endblock %}
 {% block conteudo %}
-    <h1>Meu Blog</h1>
+<div id="content">
 
     {% if messages %}
         {% for m in messages %}
@@ -12,6 +12,7 @@
     {% endif %}
     
     {% for p in posts %}
+    <div class="box-post">
         <h2>
             <a href="{% url 'meublog:detalhe' p.slug p.id %}">{{ p.titulo }}</a>
         </h2>
@@ -21,7 +22,10 @@
         <p>
             {{ p.corpo|truncatewords:15|linebreaks }}
         </p>
+    </div>
     {% endfor %}
 
+
     {% include 'paginacao.html' with page=page_obj %}
+</div>
 {% endblock %}
